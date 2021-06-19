@@ -1,1 +1,23 @@
- 
+scene.setTileMap(img`
+    fffffffff4fffffffffff
+    f.......f...........f
+    f.fff.f.f.fff.f.fff.f
+    f...f.f...f...f...f.f
+    fff.fffffffffff.fff.f
+    f.....f.f...f...f...f
+    f.fffff.fff.fffff.f.f
+    f.....f...f.f...f.f.f
+    f.f.fffff.f.f.fff.fff
+    f.f.....f.f.....f...f
+    f.fffff.f.fffff.fff.f
+    f.f.....f.f.....f.f.f
+    f.fffffff.f.....f.f.f
+    f....f....f.fff...f.f
+    ffff.f..fff.f.f...f.f
+    f.......f...f.fff.f.f
+    f.f.fffff.fff...f.f.f
+    f.f...f.f.f...f...f.f
+    fff.f.f.f.fff.f.fff.f
+    f...f...f...f.f.....f
+    fffffffffff2fffffffff
+    `)

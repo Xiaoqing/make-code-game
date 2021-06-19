@@ -1,4 +1,23 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="pxt-on-start" x="0" y="0"></block>
-</xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="pxt-on-start" id="IdThmd5]9UKJvFnE-uo*" x="0" y="0"><statement name="HANDLER"><block type="gamesettilemap" id="7*OY*WELGkubs.mq/SD?"><mutation xmlns="http://www.w3.org/1999/xhtml" _expanded="0" _input_init="false"></mutation><value name="map"><shadow type="tilemap_image_picker" id="VE/E:auK3s|nYE?GtTX."><field name="img">img`
+fffffffff4fffffffffff
+f.......f...........f
+f.fff.f.f.fff.f.fff.f
+f...f.f...f...f...f.f
+fff.fffffffffff.fff.f
+f.....f.f...f...f...f
+f.fffff.fff.fffff.f.f
+f.....f...f.f...f.f.f
+f.f.fffff.f.f.fff.fff
+f.f.....f.f.....f...f
+f.fffff.f.fffff.fff.f
+f.f.....f.f.....f.f.f
+f.fffffff.f.....f.f.f
+f....f....f.fff...f.f
+ffff.f..fff.f.f...f.f
+f.......f...f.fff.f.f
+f.f.fffff.fff...f.f.f
+f.f...f.f.f...f...f.f
+fff.f.f.f.fff.f.fff.f
+f...f...f...f.f.....f
+fffffffffff2fffffffff
+`</field><data>{"commentRefs":[],"fieldData":{"img":"VE/E:auK3s|nYE?GtTX."}}</data></shadow></value></block></statement></block></xml>
