@@ -4,7 +4,8 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "color-coded-tilemap": "*"
+        "color-coded-tilemap": "*",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0"
     },
     "files": [
         "README.md",
@@ -18,7 +19,7 @@
     ],
     "public": true,
     "targetVersions": {
-        "target": "1.4.44",
+        "target": "1.4.45",
         "targetId": "arcade"
     },
     "supportedTargets": [

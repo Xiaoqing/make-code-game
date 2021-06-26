@@ -1,113 +1,166 @@
+namespace SpriteKind {
+    export const Coin = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeScoreBy(1)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    if (mySprite.overlapsWith(oracle_one)) {
-        game.showLongText("I am the oracle. If you answer my question, I will show you the direction.", DialogLayout.Bottom)
-        answer = game.askForNumber("10+5=")
-        if (answer == 15) {
-            scene.setTile(1, img`
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                `, false)
-            game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+    game.showLongText("Give me five coins and I will show you the direction. ", DialogLayout.Bottom)
+    if (info.score() >= 5) {
+        info.changeScoreBy(-5)
+        if (mySprite.overlapsWith(oracle_one)) {
+            answer = game.askForNumber("10+5=")
+            if (answer == 15) {
+                scene.setTile(1, img`
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    `, false)
+                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+            }
+            mySprite.y += -10
+        } else if (mySprite.overlapsWith(oracle_two)) {
+            answer = game.askForNumber("10.6+1.51=")
+            if (answer == 12.11) {
+                scene.setTile(13, img`
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                    7 7 2 2 2 2 2 6 2 2 2 2 2 7 7 7 
+                    7 7 7 2 2 2 2 6 2 2 2 2 7 7 7 7 
+                    7 7 7 7 2 2 2 6 2 2 2 7 7 7 7 7 
+                    7 7 7 7 7 2 6 6 6 2 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    `, false)
+                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+            }
+            mySprite.x += -10
+        } else if (mySprite.overlapsWith(Oracle_three)) {
+            answer = game.askForNumber("What is the pi in four decimal places?")
+            if (answer == 3.1415) {
+                scene.setTile(9, img`
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 2 2 2 2 2 2 2 2 2 2 2 7 7 7 
+                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    `, false)
+                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+            }
+            mySprite.x += 10
+        } else if (mySprite.overlapsWith(oracle_four)) {
+            answer = game.askForNumber("How many animals in the Chinese zodiac?")
+            if (answer == 12) {
+                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+                scene.setTile(5, img`
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                    `, false)
+            }
+            mySprite.y += 10
         }
-        mySprite.x += 10
-    } else if (mySprite.overlapsWith(oracle_two)) {
-        game.showLongText("I am the oracle. If you answer my question, I will show you the direction.", DialogLayout.Bottom)
-        answer = game.askForNumber("10.6+1.51=")
-        if (answer == 12.11) {
-            scene.setTile(13, img`
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                7 7 2 2 2 2 2 6 2 2 2 2 2 7 7 7 
-                7 7 7 2 2 2 2 6 2 2 2 2 7 7 7 7 
-                7 7 7 7 2 2 2 6 2 2 2 7 7 7 7 7 
-                7 7 7 7 7 2 6 6 6 2 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                `, false)
-            game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+    } else {
+        if (mySprite.overlapsWith(oracle_one)) {
+            mySprite.y += -10
+        } else if (mySprite.overlapsWith(oracle_two)) {
+            mySprite.x += -10
+        } else if (mySprite.overlapsWith(Oracle_three)) {
+            mySprite.x += 10
+        } else if (mySprite.overlapsWith(oracle_four)) {
+            mySprite.y += 10
         }
-        mySprite.y += -10
-    } else if (mySprite.overlapsWith(Oracle_three)) {
-        game.showLongText("I am the oracle. If you answer my question, I will show you the direction.", DialogLayout.Bottom)
-        answer = game.askForNumber("What is the pi in four decimal places?")
-        if (answer == 3.1415) {
-            scene.setTile(9, img`
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 2 2 2 2 2 2 2 2 2 2 2 7 7 7 
-                7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                `, false)
-            game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
-        }
-        mySprite.x += 10
     }
 })
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
+    game.splash("Your results in seconds is:", convertToText(game.runtime() / 1000))
     game.over(true, effects.smiles)
 })
 let answer = 0
+let coin: Sprite = null
+let oracle_four: Sprite = null
 let Oracle_three: Sprite = null
 let oracle_two: Sprite = null
 let oracle_one: Sprite = null
 let mySprite: Sprite = null
+game.splash("Such a nice day... Oh no ... It's night!")
+game.splash("Help me get out of the forest!")
 scene.setBackgroundColor(7)
 effects.blizzard.startScreenEffect()
 scene.setTileMap(img`
-    fffffffff4fffffffffff
-    f.......f...........f
-    f.fff.f.f..ff.f.fff.f
-    f...f.f...f...f...f.f
-    fff.fffffffffff.fff.f
-    f.....f.fc..f...f...f
-    f1.ffff.fff.fffff.f.f
-    f.....f...f.f...f.f3f
-    f.f.fffff.f...fff.fff
-    f.f.....f.f.....f..df
-    f.fffff.f.fffff.fff.f
-    f.fa....f.f.....f.f.f
-    f.fffffff.f.......f.f
-    f....f....f9fff...f.f
-    ffff.f..fff.f.f...f.f
-    f.......f...f.fff.f.f
-    f.f.fffff.fff.....f.f
-    f.f...f.f.f...f...f.f
-    fff.f.f.f.fff.f.fff.f
-    f...f...f...f.f.....f
-    fffffffff2fffffffffff
+    4ffffffffffffffffffffffff
+    ..f777..f.......f77.f..3f
+    f.fffff.fff.f.fffff.f.fff
+    f...f.......f.....f.f.f7f
+    f...f.fffffff.fff.f.f.f7f
+    f...f.f.....f...f.f.f.f7f
+    f.fff.f.....fffff.f.f.f7f
+    f.f...f.fff....9f.....f7f
+    f.fff.f.f7f.....fffffdf.f
+    f...f.f.f7f.....f...f...f
+    fff.f.f.f7f.fff.f.f.fff.f
+    f.f.f.f.f.f...f.f.f.....f
+    f.f.f.f...fffff.fff.fffff
+    f.f...f.f.f.....f....777f
+    f.fffff.f.f.fff1fff.fffff
+    f...f...f.f.f.........f.f
+    f.fff.fff.f.fffffff.fff.f
+    f...fcf...f.f.....f.....f
+    fff.fff.fff.f.fff.f.fff.f
+    f7f...f...f.f.f7f.f.f.f.f
+    f7f...f...f.f.f7f.fff.f.f
+    f7f...f...f.f.f7f.....f.f
+    f7fff.fff.f.f.f7f.fff.f.f
+    f7f.......f...f7f.f8f.faf
+    f.fffffff.fff5f.fff.f.fff
+    f...........f.......f....
+    ffffffffffffffffffffffff2
     `)
 scene.setTile(15, img`
     . . . . . . . c c . . . . . . . 
@@ -128,22 +181,22 @@ scene.setTile(15, img`
     . . . . . . . e e . . . . . . . 
     `, true)
 scene.setTile(4, img`
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    b b b d d d d d d d d d d b b b 
-    c c c c c c c c c c c c c c c c 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
     `, false)
 scene.setTile(1, img`
     7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
@@ -200,23 +253,114 @@ scene.setTile(9, img`
     7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
     `, false)
 scene.setTile(2, img`
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    d d b d d d d d d d d d d b d d 
-    d d c c c c c c c c c c c c d d 
-    d d c b b b b b b b b b b c d d 
-    b b b d d d d d d d d d d b b b 
-    c c c c c c c c c c c c c c c c 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 2 . . . . . . . . 
+    . . . . . . 2 2 2 . . . . . . . 
+    . . . . . 2 2 2 2 2 . . . . . . 
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    . . . 2 2 2 2 2 2 2 2 2 . . . . 
+    . . 2 2 2 2 2 2 2 2 2 2 2 . . . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 3 3 3 3 3 3 3 3 3 3 3 3 3 . . 
+    . 3 3 3 3 3 e e 3 3 3 3 3 3 . . 
+    . 3 3 9 1 3 e e 3 3 9 1 3 3 . . 
+    . 3 3 9 9 3 e 5 3 3 9 9 3 3 . . 
+    . 3 3 3 3 3 e e 3 3 3 3 3 3 . . 
     `, true)
+scene.setTile(10, img`
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    `, false)
+scene.setTile(3, img`
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    `, false)
+scene.setTile(12, img`
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    `, false)
+scene.setTile(5, img`
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    `, false)
+scene.setTile(8, img`
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+    `, false)
+let Coins = 0
 mySprite = sprites.create(img`
     . f f f . f f f f . f f f . 
     f f f f f c c c c f f f f f 
@@ -295,6 +439,90 @@ Oracle_three = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     `, SpriteKind.Projectile)
 scene.placeOnRandomTile(Oracle_three, 12)
+oracle_four = sprites.create(img`
+    . . . . . . . c c c . . . . . . 
+    . . . . . . c b 5 c . . . . . . 
+    . . . . c c c 5 5 c c c . . . . 
+    . . c c b c 5 5 5 5 c c c c . . 
+    . c b b 5 b 5 5 5 5 b 5 b b c . 
+    . c b 5 5 b b 5 5 b b 5 5 b c . 
+    . . f 5 5 5 b b b b 5 5 5 c . . 
+    . . f f 5 5 5 5 5 5 5 5 f f . . 
+    . . f f f b f e e f b f f f . . 
+    . . f f f 1 f b b f 1 f f f . . 
+    . . . f f b b b b b b f f . . . 
+    . . . e e f e e e e f e e . . . 
+    . . e b c b 5 b b 5 b f b e . . 
+    . . e e f 5 5 5 5 5 5 f e e . . 
+    . . . . c b 5 5 5 5 b c . . . . 
+    . . . . . f f f f f f . . . . . 
+    `, SpriteKind.Projectile)
+scene.placeOnRandomTile(oracle_four, 8)
+let tile_list = scene.getTilesByType(7)
+for (let value of tile_list) {
+    coin = sprites.create(img`
+        . . b b b b . . 
+        . b 5 5 5 5 b . 
+        b 5 d 3 3 d 5 b 
+        b 5 3 5 5 1 5 b 
+        c 5 3 5 5 1 d c 
+        c d d 1 1 d d c 
+        . f d d d d f . 
+        . . f f f f . . 
+        `, SpriteKind.Coin)
+    scene.place(value, coin)
+    animation.runImageAnimation(
+    coin,
+    [img`
+        . . b b b b . . 
+        . b 5 5 5 5 b . 
+        b 5 d 3 3 d 5 b 
+        b 5 3 5 5 1 5 b 
+        c 5 3 5 5 1 d c 
+        c d d 1 1 d d c 
+        . f d d d d f . 
+        . . f f f f . . 
+        `,img`
+        . . . b b . . . 
+        . . b 5 5 b . . 
+        . b 5 d 1 5 b . 
+        . b 5 3 1 5 b . 
+        . c 5 3 1 d c . 
+        . c 5 1 d d c . 
+        . . f d d f . . 
+        . . . f f . . . 
+        `,img`
+        . . . b b . . . 
+        . . b 5 5 b . . 
+        . . b 1 1 b . . 
+        . . b 5 5 b . . 
+        . . b d d b . . 
+        . . c d d c . . 
+        . . c 3 3 c . . 
+        . . . f f . . . 
+        `,img`
+        . . . b b . . . 
+        . . b 5 5 b . . 
+        . b 5 1 d 5 b . 
+        . b 5 1 3 5 b . 
+        . c d 1 3 5 c . 
+        . c d d 1 5 c . 
+        . . f d d f . . 
+        . . . f f . . . 
+        `,img`
+        . . . b b b . . 
+        . . b 5 5 5 b . 
+        . b 5 d 3 d 5 b 
+        . b 5 1 5 3 5 b 
+        . c d 1 5 3 5 c 
+        . c d d 1 d 5 c 
+        . . f d d d f . 
+        . . . f f f . . 
+        `],
+    200,
+    true
+    )
+}
 forever(function () {
-    music.playMelody("E B C5 A B G A F ", 120)
+    music.playMelody("G F G A - F E D ", 120)
 })
