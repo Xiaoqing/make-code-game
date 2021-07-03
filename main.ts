@@ -59,17 +59,17 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
     game.showLongText("Give me five coins and I will show you the direction. ", DialogLayout.Bottom)
     if (info.score() >= 5) {
         info.changeScoreBy(-5)
-        if (mySprite.overlapsWith(oracle_one)) {
+        if (otherSprite == oracle_one) {
             OverlapOracleOne()
-        } else if (mySprite.overlapsWith(oracle_two)) {
+        } else if (otherSprite == oracle_two) {
             OverlapOracleTwo()
-        } else if (mySprite.overlapsWith(Oracle_three)) {
+        } else if (otherSprite == Oracle_three) {
             OverlapOracleThree()
-        } else if (mySprite.overlapsWith(oracle_four)) {
+        } else if (otherSprite == oracle_four) {
             OverlapOracleFour()
         }
     }
-    FindSpriteDirection(vx, vy)
+    FindSpriteDirection(sprite, vx, vy)
 })
 function OverlapOracleThree () {
     answer = game.askForNumber("What is the pi in four decimal places?")
@@ -95,21 +95,20 @@ function OverlapOracleThree () {
         game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
     }
 }
-function FindSpriteDirection (vx: number, vy: number) {
+function FindSpriteDirection (sprite: Sprite, vx: number, vy: number) {
     if (vy < 0) {
-        mySprite.y += 10
+        sprite.y += 10
     } else if (vy > 0) {
-        mySprite.y += -10
+        sprite.y += -10
     } else if (vx < 0) {
-        mySprite.x += 10
+        sprite.x += 10
     } else if (vx > 0) {
-        mySprite.x += -10
+        sprite.x += -10
     }
 }
 function OverlapOracleFour () {
     answer = game.askForNumber("How many animals in the Chinese zodiac?")
     if (answer == 12) {
-        game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
         scene.setTile(5, img`
             7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
             7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
@@ -128,6 +127,7 @@ function OverlapOracleFour () {
             7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
             7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
             `, false)
+        game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
     }
 }
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
