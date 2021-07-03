@@ -5,123 +5,139 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSpr
     otherSprite.destroy()
     info.changeScoreBy(1)
 })
+function OverlapOracleTwo () {
+    answer = game.askForNumber("10.6+1.51=")
+    if (answer == 12.11) {
+        scene.setTile(13, img`
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+            7 7 2 2 2 2 2 6 2 2 2 2 2 7 7 7 
+            7 7 7 2 2 2 2 6 2 2 2 2 7 7 7 7 
+            7 7 7 7 2 2 2 6 2 2 2 7 7 7 7 7 
+            7 7 7 7 7 2 6 6 6 2 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            `, false)
+        game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+    }
+}
+function OverlapOracleOne () {
+    answer = game.askForNumber("10+5=")
+    if (answer == 15) {
+        scene.setTile(1, img`
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+            7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            `, false)
+        game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    vx = mySprite.vx
+    vy = mySprite.vy
     game.showLongText("Give me five coins and I will show you the direction. ", DialogLayout.Bottom)
     if (info.score() >= 5) {
         info.changeScoreBy(-5)
         if (mySprite.overlapsWith(oracle_one)) {
-            answer = game.askForNumber("10+5=")
-            if (answer == 15) {
-                scene.setTile(1, img`
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    `, false)
-                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
-            }
-            mySprite.y += -10
+            OverlapOracleOne()
         } else if (mySprite.overlapsWith(oracle_two)) {
-            answer = game.askForNumber("10.6+1.51=")
-            if (answer == 12.11) {
-                scene.setTile(13, img`
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                    7 7 2 2 2 2 2 6 2 2 2 2 2 7 7 7 
-                    7 7 7 2 2 2 2 6 2 2 2 2 7 7 7 7 
-                    7 7 7 7 2 2 2 6 2 2 2 7 7 7 7 7 
-                    7 7 7 7 7 2 6 6 6 2 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    `, false)
-                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
-            }
-            mySprite.x += -10
+            OverlapOracleTwo()
         } else if (mySprite.overlapsWith(Oracle_three)) {
-            answer = game.askForNumber("What is the pi in four decimal places?")
-            if (answer == 3.1415) {
-                scene.setTile(9, img`
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 2 2 2 2 2 2 2 2 2 2 2 7 7 7 
-                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    `, false)
-                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
-            }
-            mySprite.x += 10
+            OverlapOracleThree()
         } else if (mySprite.overlapsWith(oracle_four)) {
-            answer = game.askForNumber("How many animals in the Chinese zodiac?")
-            if (answer == 12) {
-                game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
-                scene.setTile(5, img`
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                    `, false)
-            }
-            mySprite.y += 10
-        }
-    } else {
-        if (mySprite.overlapsWith(oracle_one)) {
-            mySprite.y += -10
-        } else if (mySprite.overlapsWith(oracle_two)) {
-            mySprite.x += -10
-        } else if (mySprite.overlapsWith(Oracle_three)) {
-            mySprite.x += 10
-        } else if (mySprite.overlapsWith(oracle_four)) {
-            mySprite.y += 10
+            OverlapOracleFour()
         }
     }
+    FindSpriteDirection(vx, vy)
 })
+function OverlapOracleThree () {
+    answer = game.askForNumber("What is the pi in four decimal places?")
+    if (answer == 3.1415) {
+        scene.setTile(9, img`
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 2 2 2 2 2 2 2 2 2 2 2 7 7 7 
+            7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+            7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            `, false)
+        game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+    }
+}
+function FindSpriteDirection (vx: number, vy: number) {
+    if (vy < 0) {
+        mySprite.y += 10
+    } else if (vy > 0) {
+        mySprite.y += -10
+    } else if (vx < 0) {
+        mySprite.x += 10
+    } else if (vx > 0) {
+        mySprite.x += -10
+    }
+}
+function OverlapOracleFour () {
+    answer = game.askForNumber("How many animals in the Chinese zodiac?")
+    if (answer == 12) {
+        game.showLongText("Congratulations! Please follow the arrow.", DialogLayout.Bottom)
+        scene.setTile(5, img`
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+            7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+            7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+            `, false)
+    }
+}
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
+    game.splash("Knock Knock!")
+    game.splash("Come in for for night.Its ")
     game.splash("Your results in seconds is:", convertToText(game.runtime() / 1000))
     game.over(true, effects.smiles)
 })
+let vy = 0
+let vx = 0
 let answer = 0
 let coin: Sprite = null
 let oracle_four: Sprite = null
@@ -129,6 +145,7 @@ let Oracle_three: Sprite = null
 let oracle_two: Sprite = null
 let oracle_one: Sprite = null
 let mySprite: Sprite = null
+let Coins = 0
 game.splash("Such a nice day... Oh no ... It's night!")
 game.splash("Help me get out of the forest!")
 scene.setBackgroundColor(7)
@@ -360,7 +377,6 @@ scene.setTile(8, img`
     7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
     7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
     `, false)
-let Coins = 0
 mySprite = sprites.create(img`
     . f f f . f f f f . f f f . 
     f f f f f c c c c f f f f f 
