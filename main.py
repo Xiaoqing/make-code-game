@@ -7,142 +7,149 @@ def on_on_overlap(sprite, otherSprite):
     info.change_score_by(1)
 sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap)
 
+def OverlapWithOracle(sprite: Sprite):
+    global question_index, answer
+    if len(questions) == 0:
+        game.splash("Sorry, no more questions!")
+        return 0
+    question_index = randint(0, len(questions) - 1)
+    answer = game.ask_for_number(questions.remove_at(question_index))
+    if answer == answers.remove_at(question_index):
+        if sprite == oracle_one:
+            scene.set_tile(1,
+                img("""
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+                                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+                """),
+                False)
+        elif sprite == oracle_two:
+            scene.set_tile(13,
+                img("""
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
+                                    7 7 2 2 2 2 2 6 2 2 2 2 2 7 7 7 
+                                    7 7 7 2 2 2 2 6 2 2 2 2 7 7 7 7 
+                                    7 7 7 7 2 2 2 6 2 2 2 7 7 7 7 7 
+                                    7 7 7 7 7 2 6 6 6 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+                """),
+                False)
+        elif sprite == Oracle_three:
+            scene.set_tile(9,
+                img("""
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 2 2 2 2 2 2 2 2 2 2 2 7 7 7 
+                                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+                                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+                """),
+                False)
+        elif sprite == oracle_four:
+            scene.set_tile(5,
+                img("""
+                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
+                                    7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
+                                    7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+                                    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+                """),
+                False)
+        game.show_long_text("Congratulations! Please follow the arrow.",
+            DialogLayout.BOTTOM)
+    return 0
+
 def on_on_overlap2(sprite, otherSprite):
-    global answer
+    global vx, vy
+    vx = sprite.vx
+    vy = sprite.vy
     game.show_long_text("Give me five coins and I will show you the direction. ",
         DialogLayout.BOTTOM)
     if info.score() >= 5:
         info.change_score_by(-5)
-        if mySprite.overlaps_with(oracle_one):
-            answer = game.ask_for_number("10+5=")
-            if answer == 15:
-                scene.set_tile(1,
-                    img("""
-                        7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                                            7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
-                    """),
-                    False)
-                game.show_long_text("Congratulations! Please follow the arrow.",
-                    DialogLayout.BOTTOM)
-            mySprite.y += -10
-        elif mySprite.overlaps_with(oracle_two):
-            answer = game.ask_for_number("10.6+1.51=")
-            if answer == 12.11:
-                scene.set_tile(13,
-                    img("""
-                        7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 6 2 2 7 7 7 7 7 7 
-                                            7 7 2 2 2 2 2 6 2 2 2 2 2 7 7 7 
-                                            7 7 7 2 2 2 2 6 2 2 2 2 7 7 7 7 
-                                            7 7 7 7 2 2 2 6 2 2 2 7 7 7 7 7 
-                                            7 7 7 7 7 2 6 6 6 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
-                    """),
-                    False)
-                game.show_long_text("Congratulations! Please follow the arrow.",
-                    DialogLayout.BOTTOM)
-            mySprite.x += -10
-        elif mySprite.overlaps_with(Oracle_three):
-            answer = game.ask_for_number("What is the pi in four decimal places?")
-            if answer == 3.1415:
-                scene.set_tile(9,
-                    img("""
-                        7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 2 2 2 2 2 2 2 2 2 2 2 7 7 7 
-                                            7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                                            7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
-                    """),
-                    False)
-                game.show_long_text("Congratulations! Please follow the arrow.",
-                    DialogLayout.BOTTOM)
-            mySprite.x += 10
-        elif mySprite.overlaps_with(oracle_four):
-            answer = game.ask_for_number("How many animals in the Chinese zodiac?")
-            if answer == 12:
-                game.show_long_text("Congratulations! Please follow the arrow.",
-                    DialogLayout.BOTTOM)
-                scene.set_tile(5,
-                    img("""
-                        7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 2 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 2 2 2 2 2 7 7 7 7 7 7 
-                                            7 7 7 7 2 2 2 2 2 2 2 7 7 7 7 7 
-                                            7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 2 2 2 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-                                            7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
-                    """),
-                    False)
-            mySprite.y += 10
-    elif mySprite.overlaps_with(oracle_one):
-        mySprite.y += -10
-    elif mySprite.overlaps_with(oracle_two):
-        mySprite.x += -10
-    elif mySprite.overlaps_with(Oracle_three):
-        mySprite.x += 10
-    elif mySprite.overlaps_with(oracle_four):
-        mySprite.y += 10
+        OverlapWithOracle(otherSprite)
+    FindSpriteDirection(sprite, vx, vy)
 sprites.on_overlap(SpriteKind.player, SpriteKind.projectile, on_on_overlap2)
+
+def FindSpriteDirection(sprite: Sprite, vx: number, vy: number):
+    if vy < 0:
+        sprite.y += 10
+    elif vy > 0:
+        sprite.y += -10
+    elif vx < 0:
+        sprite.x += 10
+    elif vx > 0:
+        sprite.x += -10
 
 def on_hit_tile(sprite):
     game.splash("Knock Knock!")
-    game.splash("Come in for for night.Its ")
+    game.splash("Come in for for night. Its dangerous out there. I've got stew for supper!")
     game.splash("Your results in seconds is:",
         convert_to_text(game.runtime() / 1000))
     game.over(True, effects.smiles)
 scene.on_hit_tile(SpriteKind.player, 2, on_hit_tile)
 
+vy = 0
+vx = 0
 answer = 0
+question_index = 0
 coin: Sprite = None
 oracle_four: Sprite = None
 Oracle_three: Sprite = None
 oracle_two: Sprite = None
 oracle_one: Sprite = None
-mySprite: Sprite = None
+answers: List[number] = []
+questions: List[str] = []
 Coins = 0
+questions = ["10+5=",
+    "10.6+1.51=",
+    "What is the pi in four decimal places?",
+    "How many animals in the Chinese zodiac?"]
+answers = [15, 12.11, 3.1415, 12]
 game.splash("Such a nice day... Oh no ... It's night!")
 game.splash("Help me get out of the forest!")
 scene.set_background_color(7)
